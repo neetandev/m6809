@@ -1,6 +1,4 @@
-// Hosts the unmodified MAME m6809 instruction semantics: the inline helpers from
-// m6809inl.h and the generated m6809.hxx state machine. The three register transfer
-// helpers below are copied verbatim from the MAME m6809.cpp.
+// Hosts the MAME m6809 instruction semantics with observed FM-77AV corrections.
 #include "m6809_shim.h"
 
 #include "mame/m6809inl.h"
@@ -19,8 +17,8 @@ uint16_t m6809_base_device::read_tfr_exg_816_register(uint8_t reg)
 		case  5: result = m_pc.w;    break;  // PC
 		case  8: result = ((uint16_t)0xff00) | m_q.r.a;   break;  // A
 		case  9: result = ((uint16_t)0xff00) | m_q.r.b;   break;  // B
-		case 10: result = ((uint16_t)m_cc) << 8 | m_cc;   break;  // CC
-		case 11: result = ((uint16_t)m_dp) << 8 | m_dp;   break;  // DP
+		case 10: result = ((uint16_t)0xff00) | m_cc;   break;  // CC
+		case 11: result = ((uint16_t)0xff00) | m_dp;   break;  // DP
 		default: result = 0xffff; break;
 	}
 

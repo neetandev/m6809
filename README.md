@@ -16,6 +16,10 @@ m6809 core and records the resulting state and bus traffic.
 - `testgen/` - the test vector generator. The MAME m6809 core files it executes are
   hard copies in `testgen/mame/`.
 
+The standalone register-transfer helpers apply the mixed-width CC/DP behavior observed
+on a real FM-77AV and documented by 77AVEMU. This intentionally differs from MAME's
+current CC/DP duplication behavior.
+
 Skipped opcodes: `13` (SYNC) and `3c` (CWAI) wait for an interrupt line and never
 complete in a single step; `14`, `15` and `cd` (FREERUN) enter a CPU test mode that free
 runs until reset.
